@@ -83,9 +83,8 @@ Input validation to prevent empty fields
 
 Clean UI with gradients and modern styles
 
-Fully deployed backend & frontend:
-https://growthpro-backend-9ef5.onrender.com
-growthpro-dashboard-eight.vercel.app
+Fully deployed backend & frontend
+
 
 
 📝 License

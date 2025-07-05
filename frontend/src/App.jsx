@@ -1,31 +1,49 @@
 import { useState } from 'react';
 import BusinessForm from './components/BusinessForm';
 import BusinessCard from './components/BusinessCard';
-import './index.css'
-
+import { useBusiness } from './context/BusinessContext';
+import './index.css';
 
 function App() {
   const [businessData, setBusinessData] = useState(null);
   const [formValues, setFormValues] = useState(null);
+  const [loading, setLoading] = useState(false); // New loading state
+  const [error, setError] = useState(null);      // Optional error state
 
   const handleFormSubmit = async (values) => {
-    setFormValues(values);
-    const res = await fetch('https://growthpro-backend-9ef5.onrender.com/business-data', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(values),
-    });
-    const data = await res.json();
-    setBusinessData(data);
+    try {
+      setFormValues(values);
+      setLoading(true);
+      setError(null);
+      const res = await fetch('https://growthpro-backend-9ef5.onrender.com/business-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      });
+      const data = await res.json();
+      setBusinessData(data);
+    } catch (err) {
+      setError('Failed to fetch business data');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleRegenerate = async () => {
     if (!formValues) return;
-    const res = await fetch(
-      `https://growthpro-backend-9ef5.onrender.com/regenerate-headline?name=${formValues.name}&location=${formValues.location}`
-    );
-    const { headline } = await res.json();
-    setBusinessData((prev) => ({ ...prev, headline }));
+    try {
+      setLoading(true);
+      setError(null);
+      const res = await fetch(
+        `https://growthpro-backend-9ef5.onrender.com/regenerate-headline?name=${formValues.name}&location=${formValues.location}`
+      );
+      const { headline } = await res.json();
+      setBusinessData((prev) => ({ ...prev, headline }));
+    } catch (err) {
+      setError('Failed to regenerate headline');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -38,8 +56,14 @@ function App() {
         <BusinessForm onSubmit={handleFormSubmit} />
       </div>
 
+      {loading && <div className="loader mt-6 mb-4"></div>}
+
+      {error && <p className="text-red-500 mt-4">{error}</p>}
+
       <div className="card-wrapper">
-        <BusinessCard data={businessData} onRegenerate={handleRegenerate} />
+        {!loading && businessData && (
+          <BusinessCard data={businessData} onRegenerate={handleRegenerate} />
+        )}
       </div>
     </div>
   );

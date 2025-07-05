@@ -10,7 +10,7 @@ function App() {
 
   const handleFormSubmit = async (values) => {
     setFormValues(values);
-    const res = await fetch('https://growthpro-backend-9ef5.onrender.com', {
+    const res = await fetch('https://growthpro-backend-9ef5.onrender.com/business-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(values),

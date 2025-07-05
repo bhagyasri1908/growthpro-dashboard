@@ -1,0 +1,68 @@
+/* BusinessForm.css */
+
+.business-form {
+  background: #a7f3d0;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  max-width: 480px;
+  width: 100%;
+  margin: 2rem auto;
+}
+
+.business-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+.business-form input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1rem;
+  outline: none;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.business-form input:focus {
+  border-color: #a855f7;
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
+}
+
+.business-form button {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(to right, #34d399, #10b981);
+  color: white;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.business-form button:hover {
+  transform: scale(1.03);
+}
+
+.business-form button:active {
+  transform: scale(0.96);
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh; 
+}
+
+.input-styling{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

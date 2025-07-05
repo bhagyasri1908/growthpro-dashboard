@@ -22,7 +22,7 @@ function App() {
   const handleRegenerate = async () => {
     if (!formValues) return;
     const res = await fetch(
-      `http://localhost:3000/regenerate-headline?name=${formValues.name}&location=${formValues.location}`
+      `https://growthpro-backend-9ef5.onrender.com/regenerate-headline?name=${formValues.name}&location=${formValues.location}`
     );
     const { headline } = await res.json();
     setBusinessData((prev) => ({ ...prev, headline }));
